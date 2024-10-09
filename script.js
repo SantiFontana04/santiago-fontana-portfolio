@@ -1,11 +1,15 @@
 let menuVisible = false;
 
-function mostrarOcultarMenu(){
-    if(menuVisible){
-        document.getElementById("nav").classList ="";
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("nav").classList.remove("responsive");
+});
+
+function mostrarOcultarMenu() {
+    if (menuVisible) {
+        document.getElementById("nav").classList.remove("responsive");
         menuVisible = false;
-    }else{
-        document.getElementById("nav").classList ="responsive";
+    } else {
+        document.getElementById("nav").classList.add("responsive");
         menuVisible = true;
     }
 }
