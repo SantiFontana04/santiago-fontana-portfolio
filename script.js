@@ -1,25 +1,38 @@
-let menuVisible = false;
+let menuVisible = false;  // Inicialmente el menú no es visible
 
+// Al cargar el DOM, configurar eventos y el estado inicial del menú
 document.addEventListener("DOMContentLoaded", function() {
+    // Ocultar el menú (quitar la clase 'responsive' al cargar)
     document.getElementById("nav").classList.remove("responsive");
+
+    // Seleccionar los enlaces del menú
+    const enlaces = document.querySelectorAll("nav ul li a");
+
+    // Agregar evento click a cada enlace para ejecutar la función seleccionar
+    enlaces.forEach(enlace => {
+        enlace.addEventListener("click", seleccionar);
+    });
+
+    // Agregar evento para mostrar/ocultar el menú
+    document.querySelector(".nav-responsive").addEventListener("click", mostrarOcultarMenu);
 });
 
+function seleccionar() {
+    document.getElementById("nav").classList.remove("responsive");
+    menuVisible = false;  // Asegurarse de que el menú no esté visible
+}
+
 function mostrarOcultarMenu() {
+    const nav = document.getElementById("nav");
     if (menuVisible) {
-        document.getElementById("nav").classList.remove("responsive");
-        menuVisible = false;
+        nav.classList.remove("responsive");
     } else {
-        document.getElementById("nav").classList.add("responsive");
-        menuVisible = true;
+        nav.classList.add("responsive");
     }
+    menuVisible = !menuVisible;  // Alternar el estado de visibilidad
 }
 
-function seleccionar(){
-    
-    document.getElementById("nav").classList = "";
-    menuVisible = false;
-}
-
+// Función para el efecto de habilidades
 function efectoHabilidades(){
     var skills = document.getElementById("skills");
     var distancia_skills = window.innerHeight - skills.getBoundingClientRect().top;
@@ -38,6 +51,7 @@ function efectoHabilidades(){
     }
 }
 
+// Evento para ejecutar el efecto de habilidades al hacer scroll
 window.onscroll = function(){
     efectoHabilidades();
-} 
+}
